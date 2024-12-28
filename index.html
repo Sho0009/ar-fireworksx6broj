@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AR花火</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <style>
+        .arjs-loader {
+            position: fixed;
+            z-index: 999;
+            overflow: show;
+            margin: auto;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body style="margin: 0px; overflow: hidden;">
+    <div class="arjs-loader">
+        <div>読み込み中...</div>
+    </div>
+    
+    <a-scene
+        vr-mode-ui="enabled: false;"
+        renderer="logarithmicDepthBuffer: true;"
+        embedded
+        arjs="trackingMethod: best; sourceType: webcam; debugUIEnabled: false;">
+
+        <a-assets>
+            <a-asset-item id="fireworks" src="./fireworks.gltf"></a-asset-item>
+        </a-assets>
+
+        <a-marker type="pattern" url="./pattern-marker.patt">
+            <a-entity
+                position="0 0 0"
+                scale="1 1 1"
+                gltf-model="#fireworks"
+                animation-mixer>
+            </a-entity>
+        </a-marker>
+
+        <a-entity camera></a-entity>
+    </a-scene>
+</body>
+</html>
